@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+{% load i18n humanize %}
+
+{% block title %}{% trans "Bosh sahifa" %} - AmuTeplo{% endblock %}
+
+{% block content %}
+
+    <!-- Biz haqimizda qismi -->
+    <div style="background: var(--card-bg); padding: 50px 30px; border-radius: 12px; margin-bottom: 50px; text-align: center; box-shadow: var(--shadow); transition: background-color var(--transition);">
+        <h2 style="font-size: 2.5rem; color: var(--text-color); margin-top: 0; margin-bottom: 20px; text-transform: uppercase;">{% trans "Biz Haqimizda" %}</h2>
+        <p style="font-size: 1.2rem; color: var(--text-muted); line-height: 1.6; max-width: 800px; margin: 0 auto 40px auto;">
+            {% trans "AmuTeplo - xonadoningiz va biznesingiz uchun sifatli isitish qozonlari ishlab chiqaruvchi ishonchli hamkoringiz. Bizning qozonlarimiz qishning qahraton sovuqlarida ham uyingizni issiq va fayzli qilishga kafolat beradi." %}
+        </p>
+
+        <div style="display: flex; flex-wrap: wrap; gap: 30px; justify-content: center;">
+            
+            <div class="info-card" style="flex: 1; min-width: 250px; padding: 30px 20px; background: var(--bg-color); border-radius: 8px; box-shadow: var(--shadow);">
+                <i class="fas fa-industry" style="font-size: 3.5rem; color: #007bff; margin-bottom: 15px;"></i>
+                <h3 style="font-size: 1.5rem; margin-bottom: 10px; color: var(--text-color);">{% trans "O'zimiz ishlab chiqaramiz" %}</h3>
+                <p style="color: var(--text-muted); line-height: 1.5; font-size: 1.05rem;">{% trans "Barcha qozonlar eng yuqori sifatli materiallardan, zamonaviy texnologiyalar asosida bevosita o'zimizning sexlarda ishlab chiqariladi." %}</p>
+            </div>
+
+            <div class="info-card" style="flex: 1; min-width: 250px; padding: 30px 20px; background: var(--bg-color); border-radius: 8px; box-shadow: var(--shadow);">
+                <i class="fas fa-award" style="font-size: 3.5rem; color: #ffc107; margin-bottom: 15px;"></i>
+                <h3 style="font-size: 1.5rem; margin-bottom: 10px; color: var(--text-color);">{% trans "20 yillik tajriba" %}</h3>
+                <p style="color: var(--text-muted); line-height: 1.5; font-size: 1.05rem;">{% trans "Soqada 20 yildan ortiq chuqur tajribaga egamiz. Yuzlab xonadonlar va issiqxonalar bizning qozonlarimizdan ishonchli foydalanmoqda." %}</p>
+            </div>
+
+            <div class="info-card" style="flex: 1; min-width: 250px; padding: 30px 20px; background: var(--bg-color); border-radius: 8px; box-shadow: var(--shadow);">
+                <i class="fas fa-shield-alt" style="font-size: 3.5rem; color: #28a745; margin-bottom: 15px;"></i>
+                <h3 style="font-size: 1.5rem; margin-bottom: 10px; color: var(--text-color);">{% trans "Sifat va Kafolat" %}</h3>
+                <p style="color: var(--text-muted); line-height: 1.5; font-size: 1.05rem;">{% trans "Biz har bir mahsulotimizga to'liq javob beramiz va ularning uzoq yillar xizmat qilishiga rasmiy kafolat taqdim etamiz." %}</p>
+            </div>
+
+        </div>
+    </div>
+    <div style="text-align: center; margin: 60px 0 40px 0;">
+        <h2 style="font-size: 2.8rem; margin: 0; text-transform: uppercase; letter-spacing: 1px; color: var(--text-color);">
+            <i class="fas fa-boxes" style="color: #007bff; margin-right: 10px;"></i> {% trans "Mahsulotlar" %}
+        </h2>
+        <div style="width: 80px; height: 4px; background-color: #d32f2f; margin: 15px auto 0 auto; border-radius: 2px;"></div>
+    </div>
+
+    <h3 style="text-align: center; font-size: 2rem; margin-bottom: 30px; color: var(--text-muted); text-transform: uppercase;">
+        <i class="fas fa-fire-alt" style="color: #f57c00; margin-right: 8px;"></i> {% trans "Ko'mirda ishlaydigan qozonlar" %}
+    </h3>
+    <div class="product-list">
+        {% for boiler in coal_boilers %}
+            <div class="product-card" style="position: relative;">
+                <a href="{% url 'boiler_detail' boiler.pk %}" style="text-decoration: none; color: inherit; display: block;">
+                    {% if boiler.image %}
+                        <img src="{{ boiler.image.url }}" alt="{{ boiler.name }}">
+                    {% endif %}
+                    <h4>{{ boiler.name }}</h4>
+                    <p><strong>{% trans "Quvvati:" %}</strong> {{ boiler.power }}</p>
+                    <p><strong>{% trans "Isitish maydoni:" %}</strong> {{ boiler.heating_area }}</p>
+                    <p><strong>{% trans "Narxi:" %}</strong> <span style="color: #d32f2f; font-size: 1.2rem; font-weight: bold;">{{ boiler.price|floatformat:0|intcomma }}</span> {% trans "so'm" %}</p>
+                    <p style="margin-top: 15px; color: var(--link-color); font-weight: bold; transition: color var(--transition);">{% trans "Batafsil ma'lumot &rarr;" %}</p>
+                </a>
+                
+                <div style="margin-top: 15px; border-top: 1px solid var(--border-color); padding-top: 15px;">
+                    <button onclick="openOrderModal()" style="width: 100%; background-color: #007bff; color: white; padding: 10px; border: none; border-radius: 6px; font-size: 1.1rem; cursor: pointer; transition: background-color 0.2s;" onmouseover="this.style.backgroundColor='#0056b3'" onmouseout="this.style.backgroundColor='#007bff'">
+                        <i class="fas fa-shopping-cart" style="margin-right: 5px;"></i> {% trans "Buyurtma berish" %}
+                    </button>
+                </div>
+            </div>
+        {% empty %}
+            <p>{% trans "Hozircha ko'mir qozonlari qo'shilmagan." %}</p>
+        {% endfor %}
+    </div>
+
+    <div style="width: 100%; height: 1px; background: var(--border-color); margin: 60px 0;"></div>
+
+    <h3 style="text-align: center; font-size: 2rem; margin-bottom: 30px; color: var(--text-muted); text-transform: uppercase;">
+        <i class="fas fa-burn" style="color: #03a9f4; margin-right: 8px;"></i> {% trans "Gazda ishlaydigan qozonlar" %}
+    </h3>
+    <div class="product-list">
+        {% for boiler in gas_boilers %}
+            <div class="product-card" style="position: relative;">
+                <a href="{% url 'boiler_detail' boiler.pk %}" style="text-decoration: none; color: inherit; display: block;">
+                    {% if boiler.image %}
+                        <img src="{{ boiler.image.url }}" alt="{{ boiler.name }}">
+                    {% endif %}
+                    <h4>{{ boiler.name }}</h4>
+                    <p><strong>{% trans "Quvvati:" %}</strong> {{ boiler.power }}</p>
+                    <p><strong>{% trans "Isitish maydoni:" %}</strong> {{ boiler.heating_area }}</p>
+                    <p><strong>{% trans "Narxi:" %}</strong> <span style="color: #d32f2f; font-size: 1.2rem; font-weight: bold;">{{ boiler.price|floatformat:0|intcomma }}</span> {% trans "so'm" %}</p>
+                    <p style="margin-top: 15px; color: var(--link-color); font-weight: bold; transition: color var(--transition);">{% trans "Batafsil ma'lumot &rarr;" %}</p>
+                </a>
+                
+                <div style="margin-top: 15px; border-top: 1px solid var(--border-color); padding-top: 15px;">
+                    <button onclick="openOrderModal()" style="width: 100%; background-color: #007bff; color: white; padding: 10px; border: none; border-radius: 6px; font-size: 1.1rem; cursor: pointer; transition: background-color 0.2s;" onmouseover="this.style.backgroundColor='#0056b3'" onmouseout="this.style.backgroundColor='#007bff'">
+                        <i class="fas fa-shopping-cart" style="margin-right: 5px;"></i> {% trans "Buyurtma berish" %}
+                    </button>
+                </div>
+            </div>
+        {% empty %}
+            <p>{% trans "Hozircha gaz qozonlari qo'shilmagan." %}</p>
+        {% endfor %}
+    </div>
+
+
+
+    <div style="display: flex; flex-wrap: wrap; gap: 30px; margin-top: 60px; align-items: center; background: var(--card-bg); padding: 30px; border-radius: 12px; transition: background-color var(--transition);">
+        <div style="flex: 1; min-width: 300px;">
+            <h2 style="font-size: 2.2rem; color: var(--text-color); margin-top: 0;">{% trans "Bizning manzil" %}</h2>
+            <p style="font-size: 1.2rem; color: var(--text-muted); line-height: 1.6;">
+                <i class="fas fa-map-marker-alt" style="color: #d32f2f;"></i> Qoraqalpog'iston Respublikasi, Amudaryo tumani,<br>Mang'it shahri, A.Navoiy ko'chasi 34-uy
+            </p>
+            <p style="font-size: 1.1rem; color: var(--text-muted); line-height: 1.5; margin-top: 20px;">
+                {% trans "Eng sifatli isitish qozonlari va jihozlarini bevosita do'konimizga tashrif buyurib xarid qilishingiz mumkin. Biz sizni kutib qolamiz!" %}
+            </p>
+        </div>
+        <div style="flex: 1; min-width: 300px; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.15);">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1250.5919571871393!2d60.04839425800202!3d42.11178547706359!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x41dde3015af53e75%3A0xb79a502142e0b3a2!2sAMU%20KOVKA%20ART!5e1!3m2!1sen!2sus!4v1790104315296!5m2!1sen!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+        </div>
+    </div>
+
+{% endblock content %}

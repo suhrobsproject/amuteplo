@@ -1,0 +1,138 @@
+/* CSS O'zgaruvchilari (Variables) */
+:root {
+    --bg-color: #ffffff;
+    --bg-color: #f0f2f5;
+    --text-color: #333333;
+    --text-muted: #666666;
+    --card-bg: #f9f9f9;
+    --header-bg: #222222;
+    --text-muted: #555555;
+    --card-bg: #ffffff;
+    --header-bg: #2c2f33;
+    --border-color: #dddddd;
+    --link-color: #007bff;
+    --shadow: 0 4px 6px rgba(0,0,0,0.1);
+    --shadow-hover: 0 12px 24px rgba(0,0,0,0.15);
+    --shadow: 0 4px 6px rgba(0,0,0,0.05);
+    --shadow-hover: 0 12px 24px rgba(0,0,0,0.1);
+    --transition: 0.3s ease;
+}
+
+[data-theme="dark"] {
+    --bg-color: #121212;
+    --bg-color: #1e2124;
+    --text-color: #e0e0e0;
+    --text-muted: #aaaaaa;
+    --card-bg: #1e1e1e;
+    --header-bg: #000000;
+    --border-color: #333333;
+    --link-color: #4da3ff;
+    --shadow: 0 4px 6px rgba(0,0,0,0.4);
+    --shadow-hover: 0 12px 24px rgba(0,0,0,0.6);
+    --text-muted: #b0b3b8;
+    --card-bg: #282b30;
+    --header-bg: #17181a;
+    --border-color: #3e4146;
+    --link-color: #66b2ff;
+    --shadow: 0 4px 6px rgba(0,0,0,0.2);
+    --shadow-hover: 0 12px 24px rgba(0,0,0,0.4);
+}
+
+/* Umumiy sozlamalar */
+body { 
+    font-family: 'Manrope', sans-serif; 
+    margin: 0; 
+    padding: 0; 
+    display: flex; 
+    flex-direction: column; 
+    min-height: 100vh;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color var(--transition), color var(--transition);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Oswald', sans-serif;
+    color: var(--text-color);
+    letter-spacing: 0.5px;
+    transition: color var(--transition);
+}
+
+html { scroll-behavior: smooth; }
+
+header { 
+    background-color: var(--header-bg); 
+    color: white; 
+    transition: background-color var(--transition);
+}
+
+main { padding: 2rem; flex: 1; }
+
+.product-list { display: flex; flex-wrap: wrap; gap: 20px; }
+
+.product-card { 
+    border: 1px solid var(--border-color); 
+    padding: 15px; 
+    border-radius: 8px; 
+    box-sizing: border-box; 
+    flex: 0 0 calc((100% - 80px) / 5); 
+    background-color: var(--card-bg);
+    box-shadow: var(--shadow);
+    transition: transform var(--transition), box-shadow var(--transition), background-color var(--transition), border-color var(--transition);
+}
+
+/* Hover Effect (Animatsiya) */
+.product-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-hover);
+}
+
+.product-card img { max-width: 100%; height: auto; border-radius: 4px; }
+
+.info-card {
+    transition: transform var(--transition), box-shadow var(--transition);
+}
+.info-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-hover);
+}
+
+.lang-switch a { color: #ccc; text-decoration: none; transition: color var(--transition); }
+.lang-switch a:hover { color: white; }
+.lang-switch a.active { color: white; font-weight: bold; border-bottom: 2px solid white; padding-bottom: 2px; }
+
+/* Mobil va planshet moslashuvchanligi */
+@media (max-width: 1024px) {
+    .product-card { flex: 0 0 calc((100% - 40px) / 3); } /* 3 tadan */
+}
+@media (max-width: 768px) {
+    .product-card { flex: 0 0 calc((100% - 20px) / 2); } /* 2 tadan */
+    main { padding: 1rem; }
+}
+@media (max-width: 480px) {
+    /* Telefonda ham 2 tadan ko'rsatish va siqib qo'yish */
+    .product-card { 
+        flex: 0 0 calc((100% - 10px) / 2); 
+        padding: 10px;
+    }
+    .product-list { gap: 10px; }
+    .product-card h4 { font-size: 1.1rem; }
+    .product-card p { font-size: 0.85rem; margin-bottom: 5px; }
+    .product-card button { padding: 6px 5px; font-size: 0.9rem; }
+}
+
+
+
+/* Tema tugmasi */
+.theme-toggle-btn {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+    margin-left: 15px;
+    transition: transform var(--transition);
+}
+.theme-toggle-btn:hover {
+    transform: scale(1.1);
+}
