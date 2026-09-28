@@ -29,7 +29,9 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'default-insecure-key-for-dev-only')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', 'False').lower() in ('true', '1', 't')
 
-ALLOWED_HOSTS = ['*'] # Serverga yuklaganda domenni yozasiz, masalan ['amuteplo.uz', '127.0.0.1']
+# .env da vergul bilan: ALLOWED_HOSTS=amuteplo.uz,www.amuteplo.uz
+ALLOWED_HOSTS = [h.strip() for h in os.getenv('ALLOWED_HOSTS', '*').split(',') if h.strip()]
+CSRF_TRUSTED_ORIGINS = [f'https://{h}' for h in ALLOWED_HOSTS if h != '*'] + [f'http://{h}' for h in ALLOWED_HOSTS if h != '*']
 
 
 # Application definition
@@ -137,9 +139,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/6.1/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+# cPanel'da: STATIC_ROOT=/home/<user>/public_html/static (Apache o'zi beradi)
+STATIC_ROOT = os.getenv('STATIC_ROOT', BASE_DIR / 'staticfiles')
 # Email
 # https://docs.djangoproject.com/en/6.1/topics/email/#topic-email-configuration
 
@@ -150,8 +153,8 @@ MAILERS = {
 }
 
 # Media files
-MEDIA_URL = 'media/'
-MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.getenv('MEDIA_ROOT', BASE_DIR / 'media')
 
 import os
 from django.utils.translation import gettext_lazy as _
