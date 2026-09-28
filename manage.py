@@ -15,6 +15,9 @@ def main():
             "available on your PYTHONPATH environment variable? Did you "
             "forget to activate a virtual environment?"
         ) from exc
+    # Hostingda (ISPmanager/PM2) manage.py argumentsiz, SOCKET bilan ishga tushiriladi
+    if len(sys.argv) == 1 and os.environ.get('SOCKET'):
+        sys.argv.append('serve')
     execute_from_command_line(sys.argv)
 
 
