@@ -1,0 +1,29 @@
+{% load i18n humanize %}
+<article class="card">
+    <a href="{% url 'boiler_detail' boiler.pk %}" class="card-link">
+        <div class="card-img">
+            {% if boiler.image %}
+                <img src="{{ boiler.image.url }}" alt="{{ boiler.name }}" loading="lazy">
+            {% else %}
+                <i class="fas fa-fire"></i>
+            {% endif %}
+        </div>
+        <div class="card-body">
+            <h3>{{ boiler.name }}</h3>
+            <div class="model">{% trans "Yoqilg'i" %} / {{ boiler.get_fuel_type_display }}</div>
+            <div class="spec-row"><span>{% trans "Quvvati" %}</span><span>{{ boiler.power|default:"—" }}</span></div>
+            <div class="spec-row"><span>{% trans "Isitish maydoni" %}</span><span>{{ boiler.heating_area|default:"—" }}</span></div>
+            <span class="more-link">{% trans "Batafsil ma'lumot" %} &rarr;</span>
+        </div>
+    </a>
+    <div class="card-foot">
+        <div class="price">
+            {% if boiler.price %}
+                {{ boiler.price|floatformat:0|intcomma }} <small>{% trans "so'm" %}</small>
+            {% else %}
+                <small>{% trans "Narxi so'rov bo'yicha" %}</small>
+            {% endif %}
+        </div>
+        <button type="button" class="order-btn" onclick="openOrderModal()">{% trans "Buyurtma" %}</button>
+    </div>
+</article>

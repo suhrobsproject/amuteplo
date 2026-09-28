@@ -1,52 +1,62 @@
-{% load i18n %}
+{% load i18n static %}
+{% get_current_language as LANGUAGE_CODE %}
 <!DOCTYPE html>
-<html lang="{{ request.LANGUAGE_CODE }}">
+<html lang="{{ LANGUAGE_CODE }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}AmuTeplo{% endblock %}</title>
+    <meta name="theme-color" content="#191715">
+    <title>{% block title %}AMU TEPLO{% endblock %}</title>
+    <script>
+        // Sahifa yuklanishidan oldin temani qo'llash (miltillamasligi uchun)
+        try { if (localStorage.getItem('theme') === 'dark') document.documentElement.setAttribute('data-theme', 'dark'); } catch (e) {}
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Archivo+Black&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    {% load static %}
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    {% block extra_head %}{% endblock %}
 </head>
 <body>
-    <header style="display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; flex-wrap: wrap; gap: 20px;">
-        
-        <!-- Chap taraf: Telefon raqami -->
-        <div style="flex: 1; text-align: left; min-width: 200px;">
-            <a href="tel:+998977896700" style="display: inline-block; background-color: #34C759; color: white; padding: 8px 15px; border-radius: 6px; text-decoration: none; font-weight: bold; box-shadow: 0 2px 4px rgba(0,0,0,0.2);"><i class="fas fa-phone-alt"></i> +998 97 789 67 00</a>
-        </div>
+    {% url 'home' as home_url %}
 
-        <!-- Markaz: Sarlavha va Menyular -->
-        <div style="flex: 2; text-align: center; min-width: 300px;">
-            <h1 style="margin: 0 0 10px 0; font-size: 1.8rem; color: white;">
-                <i class="fas fa-fire" style="color: #ff6b00; margin-right: 5px;"></i> {% trans "AmuTeplo - Isitish Tizimlari" %}
-            </h1>
-            <nav style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 15px;">
-                <a href="{% url 'home' %}" style="color: white; text-decoration: none; opacity: 0.9;">{% trans "Bosh sahifa" %}</a>
-                <a href="#contact" style="color: white; text-decoration: none; opacity: 0.9;">{% trans "Biz bilan bog'lanish" %}</a>
+    <header class="site-header">
+        <div class="header-inner">
+            <a href="{{ home_url }}" class="brand-block">
+                <span class="company-name">AMU KOVKA ART MCHJ</span>
+                <span class="brand-logo"><span class="dot"></span>AMU TEPLO</span>
+            </a>
+
+            <nav class="main-nav" id="main-nav">
+                <a href="{{ home_url }}#about">{% trans "Biz haqimizda" %}</a>
+                <a href="{{ home_url }}#kalkulyator">{% trans "Qozon tanlash" %}</a>
+                <a href="{{ home_url }}#katalog">{% trans "Katalog" %}</a>
+                <a href="{{ home_url }}#manzil">{% trans "Manzil" %}</a>
+                <a href="#contact">{% trans "Aloqa" %}</a>
             </nav>
-        </div>
-        
-        <!-- O'ng taraf: Til o'zgartirish va Tema -->
-        <div class="lang-switch" style="flex: 1; text-align: right; min-width: 200px; margin-top: 0; display: flex; justify-content: flex-end; align-items: center;">
-            {% get_current_language as LANGUAGE_CODE %}
-            {% get_available_languages as LANGUAGES %}
-            {% get_language_info_list for LANGUAGES as languages %}
-            {% for lang in languages %}
-                <a href="/{{ lang.code }}/" class="{% if lang.code == LANGUAGE_CODE %}active{% endif %}" style="margin-left: 10px;">
-                    {% if lang.code == 'uz' %}O'zbek{% elif lang.code == 'uz-cyrl' %}Ўзбек{% else %}{{ lang.name_local }}{% endif %}
+
+            <div class="header-right">
+                <div class="lang-switch">
+                    {% get_available_languages as LANGUAGES %}
+                    {% get_language_info_list for LANGUAGES as languages %}
+                    {% for lang in languages %}
+                        <a href="/{{ lang.code }}/" class="{% if lang.code == LANGUAGE_CODE %}active{% endif %}" title="{{ lang.name_local }}">
+                            {% if lang.code == 'uz' %}UZ{% elif lang.code == 'uz-cyrl' %}ЎЗ{% else %}{{ lang.code }}{% endif %}
+                        </a>
+                    {% endfor %}
+                </div>
+                <button id="theme-toggle" class="icon-btn" type="button" title="{% trans 'Tungi rejim' %}" aria-label="{% trans 'Tungi rejim' %}">
+                    <i id="theme-icon" class="fas fa-moon"></i>
+                </button>
+                <a href="tel:+998977896700" class="call-btn" aria-label="{% trans 'Qo‘ng‘iroq qilish' %}">
+                    <i class="fas fa-phone-alt"></i><span class="txt">+998 97 789 67 00</span>
                 </a>
-                {% if not forloop.last %}<span style="color: #888; margin-left: 10px;">/</span>{% endif %}
-            {% endfor %}
-            <button id="theme-toggle" class="theme-toggle-btn" title="Tungi rejimni yoqish">
-                <i id="theme-icon" class="fas fa-moon"></i>
-            </button>
+                <button class="icon-btn burger" id="burger" type="button" aria-label="{% trans 'Menyu' %}" aria-controls="main-nav" aria-expanded="false">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
         </div>
-        
     </header>
 
     <main>
@@ -54,99 +64,75 @@
         {% endblock content %}
     </main>
 
-    <footer id="contact" style="background-color: var(--header-bg); color: var(--text-muted); padding: 4rem 1rem 2rem 1rem; margin-top: auto; transition: background-color var(--transition);">
-        
-        <h2 style="color: white; text-align: center; margin-bottom: 3rem; font-size: 2rem;">{% trans "Bizni ijtimoiy tarmoqlarda kuzating!" %}</h2>
-        
-        <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-around; align-items: center; gap: 30px; text-align: center;">
-            
-            <!-- 1. Kontaktlar -->
-            <div style="flex: 1; min-width: 200px;">
-                <a href="tel:+998977896700" style="display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 12px; background-color: #34C759; color: white; border-radius: 8px; text-decoration: none; width: 80%; max-width: 200px; margin: 0 auto; box-shadow: 0 4px 6px rgba(0,0,0,0.3); transition: transform 0.2s;">
-                    <span style="font-size: 1.2rem; font-weight: bold; margin-bottom: 4px;"><i class="fas fa-phone-alt"></i> {% trans "Telefon" %}</span>
-                    <span style="font-size: 0.95rem; opacity: 0.9;">+998 97 789 67 00</span>
+    <!-- Aloqa -->
+    <section class="contact-sec" id="contact">
+        <div class="wrap contact-box">
+            <div>
+                <div class="tag" style="color:#F0B4BD;">{% trans "Aloqa" %}</div>
+                <h2>{% trans "Bizni ijtimoiy tarmoqlarda kuzating!" %}</h2>
+                <p>{% trans "Savollaringiz bormi? Qo'ng'iroq qiling yoki qulay messenjer orqali yozing — mutaxassislarimiz sizga mos qozonni tanlashda yordam beradi." %}</p>
+                <a href="tel:+998977896700" class="phone">+998 97 789 67 00</a>
+            </div>
+            <div class="contact-list">
+                <a href="tel:+998977896700" class="contact-row">
+                    <span class="ic"><i class="fas fa-phone-alt"></i></span>
+                    <span><span class="name">{% trans "Telefon" %}</span><br><span class="val">+998 97 789 67 00</span></span>
+                    <i class="fas fa-arrow-right arr"></i>
+                </a>
+                <a href="https://wa.me/998977896700" target="_blank" rel="noopener" class="contact-row">
+                    <span class="ic"><i class="fab fa-whatsapp"></i></span>
+                    <span><span class="name">WhatsApp</span><br><span class="val">+998 97 789 67 00</span></span>
+                    <i class="fas fa-arrow-right arr"></i>
+                </a>
+                <a href="https://t.me/AMU_TEPLO_QOZONLARI" target="_blank" rel="noopener" class="contact-row">
+                    <span class="ic"><i class="fab fa-telegram-plane"></i></span>
+                    <span><span class="name">Telegram</span><br><span class="val">@amuteplo</span></span>
+                    <i class="fas fa-arrow-right arr"></i>
+                </a>
+                <a href="https://www.instagram.com/amu_teplo_qozonlari" target="_blank" rel="noopener" class="contact-row">
+                    <span class="ic"><i class="fab fa-instagram"></i></span>
+                    <span><span class="name">Instagram</span><br><span class="val">@amuteplo</span></span>
+                    <i class="fas fa-arrow-right arr"></i>
+                </a>
+                <a href="https://www.youtube.com/@Jasur_temir_Eshik" target="_blank" rel="noopener" class="contact-row">
+                    <span class="ic"><i class="fab fa-youtube"></i></span>
+                    <span><span class="name">YouTube</span><br><span class="val">@amuteplo</span></span>
+                    <i class="fas fa-arrow-right arr"></i>
                 </a>
             </div>
-
-            <!-- WhatsApp -->
-            <div style="flex: 1; min-width: 200px;">
-                <a href="https://wa.me/998977896700" target="_blank" style="display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 12px; background-color: #25D366; color: white; border-radius: 8px; text-decoration: none; width: 80%; max-width: 200px; margin: 0 auto; box-shadow: 0 4px 6px rgba(0,0,0,0.3); transition: transform 0.2s;">
-                    <span style="font-size: 1.2rem; font-weight: bold; margin-bottom: 4px;"><i class="fab fa-whatsapp"></i> WhatsApp</span>
-                    <span style="font-size: 0.95rem; opacity: 0.9;">+99897 789 67 00</span>
-                </a>
-            </div>
-            
-            <!-- 2. Telegram -->
-            <div style="flex: 1; min-width: 200px;">
-                <a href="https://t.me/@AMU_TEPLO_QOZONLARI" target="_blank" style="display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 12px; background-color: #2AABEE; color: white; border-radius: 8px; text-decoration: none; width: 80%; max-width: 200px; margin: 0 auto; box-shadow: 0 4px 6px rgba(0,0,0,0.3);">
-                    <span style="font-size: 1.2rem; font-weight: bold; margin-bottom: 4px;"><i class="fab fa-telegram-plane"></i> Telegram</span>
-                    <span style="font-size: 0.95rem; opacity: 0.9;">@amuteplo</span>
-                </a>
-            </div>
-            
-            <!-- 3. Instagram -->
-            <div style="flex: 1; min-width: 200px;">
-                <a href="https://www.instagram.com/amu_teplo_qozonlari?stkn=cTlvdGoyeWNnMWx2&utm_source=qr" target="_blank" style="display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 12px; background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); color: white; border-radius: 8px; text-decoration: none; width: 80%; max-width: 200px; margin: 0 auto; box-shadow: 0 4px 6px rgba(0,0,0,0.3);">
-                    <span style="font-size: 1.2rem; font-weight: bold; margin-bottom: 4px;"><i class="fab fa-instagram"></i> Instagram</span>
-                    <span style="font-size: 0.95rem; opacity: 0.9;">@amuteplo</span>
-                </a>
-            </div>
-            
-            <!-- 4. YouTube -->
-            <div style="flex: 1; min-width: 200px;">
-                <a href="https://www.youtube.com/@Jasur_temir_Eshik" target="_blank" style="display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 12px; background-color: #FF0000; color: white; border-radius: 8px; text-decoration: none; width: 80%; max-width: 200px; margin: 0 auto; box-shadow: 0 4px 6px rgba(0,0,0,0.3);">
-                    <span style="font-size: 1.2rem; font-weight: bold; margin-bottom: 4px;"><i class="fab fa-youtube"></i> YouTube</span>
-                    <span style="font-size: 0.95rem; opacity: 0.9;">@amuteplo</span>
-                </a>
-            </div>
-            
         </div>
-        
-        <div style="margin-top: 4rem; border-top: 1px solid #444; padding-top: 1.5rem; text-align: center; font-size: 14px;">
-            <p style="margin: 0;">&copy; 2026 AmuTeplo. {% trans "Barcha huquqlar himoyalangan." %}</p>
+    </section>
+
+    <footer class="site-footer">
+        <div class="wrap footer-inner">
+            <div>&copy; 2026 AMU KOVKA ART MCHJ · AMU TEPLO. {% trans "Barcha huquqlar himoyalangan." %}</div>
+            <div class="social-mini">
+                <a href="https://t.me/AMU_TEPLO_QOZONLARI" target="_blank" rel="noopener" title="Telegram"><i class="fab fa-telegram-plane"></i></a>
+                <a href="https://www.instagram.com/amu_teplo_qozonlari" target="_blank" rel="noopener" title="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.youtube.com/@Jasur_temir_Eshik" target="_blank" rel="noopener" title="YouTube"><i class="fab fa-youtube"></i></a>
+            </div>
         </div>
     </footer>
-    <script src="{% static 'js/main.js' %}"></script>
-    <!-- Buyurtma berish Modali -->
-    <div id="orderModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 9999; justify-content: center; align-items: center; backdrop-filter: blur(5px);">
-        <div style="background: var(--card-bg); padding: 30px; border-radius: 16px; width: 90%; max-width: 400px; text-align: center; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.5); animation: modalFadeIn 0.3s ease;">
-            <span onclick="closeOrderModal()" style="position: absolute; top: 15px; right: 20px; font-size: 2rem; cursor: pointer; color: var(--text-muted); line-height: 1;">&times;</span>
-            <h3 style="margin-top: 10px; color: var(--text-color); margin-bottom: 25px; font-size: 1.5rem;">{% trans "Bog'lanish usulini tanlang" %}</h3>
-            
-            <a href="tel:+998977896700" style="display: flex; align-items: center; justify-content: center; background-color: #34C759; color: white; padding: 15px; border-radius: 12px; text-decoration: none; font-size: 1.2rem; margin-bottom: 15px; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.2);">
-                <i class="fas fa-phone-alt" style="margin-right: 15px; font-size: 1.5rem;"></i> {% trans "Telefon orqali" %}
+
+    <!-- Buyurtma berish modali -->
+    <div class="modal-overlay" id="orderModal" role="dialog" aria-modal="true" aria-labelledby="orderModalTitle">
+        <div class="modal-box">
+            <button class="modal-close" type="button" onclick="closeOrderModal()" aria-label="{% trans 'Yopish' %}"><i class="fas fa-times"></i></button>
+            <h3 id="orderModalTitle">{% trans "Bog'lanish usulini tanlang" %}</h3>
+            <p>{% trans "Buyurtma berish uchun o'zingizga qulay usulni tanlang." %}</p>
+            <a href="tel:+998977896700" class="modal-option">
+                <i class="fas fa-phone-alt"></i> {% trans "Telefon orqali" %} <i class="fas fa-arrow-right arr"></i>
             </a>
-            
-            <a href="https://t.me/@AMU_TEPLO_QOZONLARI" target="_blank" style="display: flex; align-items: center; justify-content: center; background-color: #2AABEE; color: white; padding: 15px; border-radius: 12px; text-decoration: none; font-size: 1.2rem; margin-bottom: 15px; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.2);">
-                <i class="fab fa-telegram-plane" style="margin-right: 15px; font-size: 1.5rem;"></i> Telegram orqali
+            <a href="https://t.me/AMU_TEPLO_QOZONLARI" target="_blank" rel="noopener" class="modal-option">
+                <i class="fab fa-telegram-plane"></i> {% trans "Telegram orqali" %} <i class="fas fa-arrow-right arr"></i>
             </a>
-            
-            <a href="https://wa.me/998977896700" target="_blank" style="display: flex; align-items: center; justify-content: center; background-color: #25D366; color: white; padding: 15px; border-radius: 12px; text-decoration: none; font-size: 1.2rem; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.2);">
-                <i class="fab fa-whatsapp" style="margin-right: 15px; font-size: 1.5rem;"></i> WhatsApp orqali
+            <a href="https://wa.me/998977896700" target="_blank" rel="noopener" class="modal-option">
+                <i class="fab fa-whatsapp"></i> {% trans "WhatsApp orqali" %} <i class="fas fa-arrow-right arr"></i>
             </a>
         </div>
     </div>
-    
-    <style>
-        @keyframes modalFadeIn {
-            from { opacity: 0; transform: translateY(-20px) scale(0.95); }
-            to { opacity: 1; transform: translateY(0) scale(1); }
-        }
-    </style>
-    
-    <script>
-        function openOrderModal() {
-            document.getElementById('orderModal').style.display = 'flex';
-        }
-        function closeOrderModal() {
-            document.getElementById('orderModal').style.display = 'none';
-        }
-        window.onclick = function(event) {
-            var modal = document.getElementById('orderModal');
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
-        }
-    </script>
+
+    <script src="{% static 'js/main.js' %}"></script>
+    {% block extra_js %}{% endblock %}
 </body>
 </html>

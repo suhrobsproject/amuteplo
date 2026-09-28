@@ -1,48 +1,82 @@
 {% extends 'base.html' %}
 {% load i18n humanize %}
 
-{% block title %}{{ boiler.name }} - AmuTeplo{% endblock %}
+{% block title %}{{ boiler.name }} — AMU TEPLO{% endblock %}
+
+{% block extra_head %}
+<meta name="referrer" content="strict-origin-when-cross-origin">
+{% endblock %}
 
 {% block content %}
-<meta name="referrer" content="strict-origin-when-cross-origin">
-<div class="boiler-detail" style="max-width: 900px; margin: 0 auto; background: var(--card-bg); padding: 30px; border-radius: 8px; box-shadow: var(--shadow); transition: background-color var(--transition);">
-    <a href="{% url 'home' %}" style="display: inline-block; margin-bottom: 20px; color: var(--link-color); text-decoration: none; font-size: 16px; transition: color var(--transition);">&larr; {% trans "Orqaga" %}</a>
-    
-    <div style="display: flex; flex-wrap: wrap; gap: 30px; margin-bottom: 40px;">
-        <!-- Chap taraf: Rasm -->
-        <div style="flex: 1; min-width: 300px;">
-            {% if boiler.image %}
-                <img src="{{ boiler.image.url }}" alt="{{ boiler.name }}" style="width: 100%; height: auto; object-fit: cover; border-radius: 8px; box-shadow: var(--shadow);">
-            {% endif %}
+<section class="section">
+    <div class="wrap">
+        <div class="crumbs">
+            <a href="{% url 'home' %}">&larr; {% trans "Bosh sahifa" %}</a>
+            <span>/</span>
+            <a href="{% url 'home' %}#katalog">{% trans "Katalog" %}</a>
+            <span>/</span>
+            <span class="cur">{{ boiler.name }}</span>
         </div>
-        
-        <!-- O'ng taraf: Ma'lumotlar -->
-        <div style="flex: 1; min-width: 300px;">
-            <h2 style="margin-top: 0; font-size: 28px; color: var(--text-color);">{{ boiler.name }}</h2>
-            
-            <div style="background: var(--bg-color); padding: 20px; border-radius: 8px; margin-bottom: 20px; transition: background-color var(--transition);">
-                <p style="font-size: 18px; margin-top: 0;"><strong>{% trans "Quvvati:" %}</strong> <span style="color: var(--text-muted);">{{ boiler.power }}</span></p>
-                {% if boiler.heating_area %}
-                <p style="font-size: 18px;"><strong>{% trans "Isitish maydoni:" %}</strong> <span style="color: var(--text-muted);">{{ boiler.heating_area }}</span></p>
-                {% endif %}
-                <p style="font-size: 20px; margin-bottom: 0;"><strong>{% trans "Narxi:" %}</strong> <span style="font-size: 1.5rem; color: #d32f2f; font-weight: bold;">{{ boiler.price|floatformat:0|intcomma }} {% trans "so'm" %}</span></p>
-            </div>
-            
-            <h3 style="margin-top: 20px; color: var(--text-color);">{% trans "Qo'shimcha ma'lumot" %}</h3>
-            <div style="line-height: 1.6; color: var(--text-muted); font-size: 16px;">
-                {{ boiler.description|linebreaks }}
-            </div>
-        </div>
-    </div>
 
-    <!-- Pastki qism: Video -->
-    {% if boiler.get_youtube_embed_url %}
-    <div style="border-top: 1px solid var(--border-color); padding-top: 30px;">
-        <h3 style="margin-top: 0; color: var(--text-color);">{% trans "Video lavha" %}</h3>
-        <div style="margin-top: 15px; border-radius: 8px; overflow: hidden; box-shadow: var(--shadow);">
-            <iframe width="100%" height="500" src="{{ boiler.get_youtube_embed_url }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <div class="detail-box">
+            <div class="detail-img">
+                {% if boiler.image %}
+                    <img src="{{ boiler.image.url }}" alt="{{ boiler.name }}">
+                {% else %}
+                    <i class="fas fa-fire"></i>
+                {% endif %}
+            </div>
+
+            <div class="detail-info">
+                <div class="tag">{{ boiler.get_fuel_type_display }} · AMU TEPLO</div>
+                <h1>{{ boiler.name }}</h1>
+
+                <div class="detail-specs">
+                    <div class="spec-row"><span>{% trans "Quvvati" %}</span><span>{{ boiler.power|default:"—" }}</span></div>
+                    {% if boiler.heating_area %}
+                    <div class="spec-row"><span>{% trans "Isitish maydoni" %}</span><span>{{ boiler.heating_area }}</span></div>
+                    {% endif %}
+                    <div class="spec-row"><span>{% trans "Yoqilg'i turi" %}</span><span>{{ boiler.get_fuel_type_display }}</span></div>
+                </div>
+
+                <div class="detail-price">
+                    <div class="lbl">{% trans "Narxi" %}</div>
+                    <div class="val">
+                        {% if boiler.price %}
+                            {{ boiler.price|floatformat:0|intcomma }} <small>{% trans "so'm" %}</small>
+                        {% else %}
+                            <small>{% trans "Narxi so'rov bo'yicha" %}</small>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="detail-actions">
+                    <button type="button" class="btn-red" onclick="openOrderModal()"><i class="fas fa-shopping-cart"></i> {% trans "Buyurtma berish" %}</button>
+                    <a href="tel:+998977896700" class="btn-dark"><i class="fas fa-phone-alt"></i> {% trans "Qo'ng'iroq qilish" %}</a>
+                </div>
+            </div>
         </div>
+
+        {% if boiler.description %}
+        <div class="detail-block">
+            <div class="sec-head">
+                <h2>{% trans "Qo'shimcha ma'lumot" %}</h2>
+            </div>
+            <div class="detail-desc">{{ boiler.description|linebreaks }}</div>
+        </div>
+        {% endif %}
+
+        {% if boiler.get_youtube_embed_url %}
+        <div class="detail-block">
+            <div class="sec-head">
+                <h2>{% trans "Video lavha" %}</h2>
+                <div class="sec-note">YouTube</div>
+            </div>
+            <div class="video-frame">
+                <iframe src="{{ boiler.get_youtube_embed_url }}" title="{{ boiler.name }}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+            </div>
+        </div>
+        {% endif %}
     </div>
-    {% endif %}
-</div>
+</section>
 {% endblock content %}
