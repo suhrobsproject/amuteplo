@@ -97,21 +97,16 @@ if os.getenv('DB_NAME'):
         }
     }
 else:
-    # .env da DB_NAME berilmagan bo'lsa — SQLite.
-    # Hostingdagi tizim SQLite eski (Django 3.37+ talab qiladi), shuning uchun
-    # bor bo'lsa pysqlite3-binary ichidagi yangi SQLite ishlatiladi.
-    try:
-        import sys
-        import pysqlite3
-        sys.modules['sqlite3'] = pysqlite3
-    except ImportError:
-        pass
+    # .env da DB_NAME berilmagan bo'lsa — SQLite
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
             'NAME': BASE_DIR / 'db.sqlite3',
         }
     }
+
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 # Password validation
