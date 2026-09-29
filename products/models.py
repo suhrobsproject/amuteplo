@@ -1,3 +1,4 @@
+
 from django.db import models
 
 # Create your models here.
@@ -25,6 +26,7 @@ class Boiler(models.Model):
             match = re.search(r'(?:v=|youtu\.be/|embed/|shorts/)([^&?]+)', self.youtube_link)
             if match:
                 video_id = match.group(1)[:11]
+                
                 return f"https://www.youtube-nocookie.com/embed/{video_id}"
         return None
 
