@@ -135,7 +135,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             document.getElementById('res-name').textContent = b.name;
             document.getElementById('res-fuel').textContent = b.fuel_label;
-            document.getElementById('res-power').textContent = b.power || '—';
+            document.getElementById('res-power').textContent = b.power ? b.power + ' kW' : '—';
             document.getElementById('res-area').textContent = b.area || '—';
             document.getElementById('res-price').textContent = formatPrice(b.price);
             document.getElementById('res-link').href = b.url;
@@ -180,3 +180,21 @@ document.addEventListener('click', function (e) {
 document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape') closeOrderModal();
 });
+
+function swapImage(thumbEl, url) {
+    document.getElementById('mainImage').src = url;
+    document.querySelectorAll('.thumb').forEach(el => el.classList.remove('active'));
+    thumbEl.classList.add('active');
+}
+
+function changeLanguage(langCode) {
+    let path = window.location.pathname;
+    let currentLang = document.documentElement.lang;
+    
+    // Path looks like /uz/katalog/ or /uz-cyrl/katalog/
+    // We want to replace the first occurrence of the current lang
+    let newPath = path.replace('/' + currentLang + '/', '/' + langCode + '/');
+    
+    // Redirect to the new URL preserving hash
+    window.location.href = newPath + window.location.hash;
+}

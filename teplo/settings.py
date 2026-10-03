@@ -182,3 +182,14 @@ django.conf.locale.LANG_INFO.update(EXTRA_LANG_INFO)
 LOCALE_PATHS = [
     BASE_DIR / 'locale',
 ]
+
+JAZZMIN_SETTINGS = {
+    "site_title": "AmuTeplo Admin",
+    "site_header": "AmuTeplo",
+    "site_brand": "AmuTeplo",
+    "site_logo": None,
+    "welcome_sign": "AmuTeplo boshqaruv paneliga xush kelibsiz",
+    "copyright": "AmuTeplo",
+    "search_model": ["products.Boiler"],
+    "show_ui_builder": False,
+}

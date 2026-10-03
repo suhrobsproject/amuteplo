@@ -19,11 +19,23 @@
         </div>
 
         <div class="detail-box">
-            <div class="detail-img">
-                {% if boiler.image %}
-                    <img src="{{ boiler.image.url }}" alt="{{ boiler.name }}">
-                {% else %}
-                    <i class="fas fa-fire"></i>
+            <div class="detail-gallery">
+                <div class="main-img">
+                    {% if boiler.image %}
+                        <img id="mainImage" src="{{ boiler.image.url }}" alt="{{ boiler.name }}">
+                    {% else %}
+                        <i class="fas fa-fire"></i>
+                    {% endif %}
+                </div>
+                {% if boiler.images.all %}
+                <div class="thumb-list">
+                    {% if boiler.image %}
+                    <img class="thumb active" src="{{ boiler.image.url }}" onclick="swapImage(this, '{{ boiler.image.url }}')">
+                    {% endif %}
+                    {% for extra_img in boiler.images.all %}
+                    <img class="thumb" src="{{ extra_img.image.url }}" onclick="swapImage(this, '{{ extra_img.image.url }}')">
+                    {% endfor %}
+                </div>
                 {% endif %}
             </div>
 
@@ -32,9 +44,9 @@
                 <h1>{{ boiler.name }}</h1>
 
                 <div class="detail-specs">
-                    <div class="spec-row"><span>{% trans "Quvvati" %}</span><span>{{ boiler.power|default:"—" }}</span></div>
+                    <div class="spec-row"><span>{% trans "Quvvati" %}</span><span>{% if boiler.power %}{{ boiler.power }} kW{% else %}—{% endif %}</span></div>
                     {% if boiler.heating_area %}
-                    <div class="spec-row"><span>{% trans "Isitish maydoni" %}</span><span>{{ boiler.heating_area }}</span></div>
+                    <div class="spec-row"><span>{% trans "Isitish maydoni" %}</span><span>{{ boiler.heating_area }} m²</span></div>
                     {% endif %}
                     <div class="spec-row"><span>{% trans "Yoqilg'i turi" %}</span><span>{{ boiler.get_fuel_type_display }}</span></div>
                 </div>
@@ -62,7 +74,52 @@
             <div class="sec-head">
                 <h2>{% trans "Qo'shimcha ma'lumot" %}</h2>
             </div>
-            <div class="detail-desc">{{ boiler.description|linebreaks }}</div>
+            <div class="detail-desc nice-desc">{{ boiler.description|linebreaks }}</div>
+        </div>
+        {% endif %}
+
+        
+        <div class="detail-block">
+            <div class="sec-head">
+                <h2>{% trans "Texnik xususiyatlari" %}</h2>
+            </div>
+            <div class="specs-list">
+                {% if boiler.working_pressure %}<div class="spec-row"><span>{% trans "Ish bosimi" %}</span><span>{{ boiler.working_pressure }} bar</span></div>{% endif %}
+                {% if boiler.power_supply %}<div class="spec-row"><span>{% trans "Elektr ta'minoti" %}</span><span>{{ boiler.power_supply }} V</span></div>{% endif %}
+                {% if boiler.dimensions %}<div class="spec-row"><span>{% trans "O'lchami (U × E × B)" %}</span><span>{{ boiler.dimensions }} mm</span></div>{% endif %}
+                {% if boiler.weight %}<div class="spec-row"><span>{% trans "Og'irligi" %}</span><span>{{ boiler.weight }} kg</span></div>{% endif %}
+                {% if boiler.chamber_volume %}<div class="spec-row"><span>{% trans "Yonish kamerasi hajmi" %}</span><span>{{ boiler.chamber_volume }} litr</span></div>{% endif %}
+                {% if boiler.bunker_volume %}<div class="spec-row"><span>{% trans "Bunker hajmi" %}</span><span>{{ boiler.bunker_volume }} kg/litr</span></div>{% endif %}
+            </div>
+        </div>
+
+        <div class="detail-block">
+            <div class="sec-head">
+                <h2>{% trans "Ishlash xususiyatlari" %}</h2>
+            </div>
+            <div class="specs-list">
+                {% if boiler.working_time %}<div class="spec-row"><span>{% trans "Bir marta yuklashda ishlash vaqti" %}</span><span>{{ boiler.working_time }} soat</span></div>{% endif %}
+                {% if boiler.fuel_consumption %}<div class="spec-row"><span>{% trans "Yoqilg'i sarfi" %}</span><span>{{ boiler.fuel_consumption }} kg/soat</span></div>{% endif %}
+                {% if boiler.control_system %}<div class="spec-row"><span>{% trans "Boshqaruv tizimi" %}</span><span>{{ boiler.control_system }}</span></div>{% endif %}
+                {% if boiler.safety_system %}<div class="spec-row"><span>{% trans "Xavfsizlik tizimi" %}</span><span>{{ boiler.safety_system }}</span></div>{% endif %}
+            </div>
+        </div>
+
+        {% if boiler.automation %}
+        <div class="detail-block">
+            <div class="sec-head">
+                <h2>{% trans "Avtomatika / Aqilli boshqaruv" %}</h2>
+            </div>
+            <div class="nice-desc">{{ boiler.automation|linebreaks }}</div>
+        </div>
+        {% endif %}
+
+        {% if boiler.equipment_set %}
+        <div class="detail-block">
+            <div class="sec-head">
+                <h2>{% trans "Komplektatsiya" %}</h2>
+            </div>
+            <div class="nice-desc">{{ boiler.equipment_set|linebreaks }}</div>
         </div>
         {% endif %}
 

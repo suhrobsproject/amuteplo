@@ -1,0 +1,481 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-03 18:27+0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: products/apps.py:6 templates/index.html:152
+msgid "Mahsulotlar"
+msgstr "Маҳсулотлар"
+
+#: products/models.py:11
+msgid "Ko'mir"
+msgstr "Кўмир"
+
+#: products/models.py:12
+msgid "Gaz"
+msgstr "Газ"
+
+#: templates/base.html:32 templates/index.html:70
+msgid "Biz haqimizda"
+msgstr "Биз ҳақимизда"
+
+#: templates/base.html:33
+msgid "Qozon tanlash"
+msgstr "Қозон танлаш"
+
+#: templates/base.html:34 templates/boiler_detail.html:16
+#: templates/index.html:18
+msgid "Katalog"
+msgstr "Каталог"
+
+#: templates/base.html:35
+msgid "Manzil"
+msgstr "Манзил"
+
+#: templates/base.html:36 templates/base.html:71
+msgid "Aloqa"
+msgstr "Алоқа"
+
+#: templates/base.html:49
+msgid "Tungi rejim"
+msgstr "Тунги режим"
+
+#: templates/base.html:52
+msgid "Qo‘ng‘iroq qilish"
+msgstr "Қо‘нг‘ироқ қилиш"
+
+#: templates/base.html:55
+msgid "Menyu"
+msgstr "Меню"
+
+#: templates/base.html:72
+msgid "Bizni ijtimoiy tarmoqlarda kuzating!"
+msgstr "Бизни ижтимоий тармоқларда кузатинг!"
+
+#: templates/base.html:73
+msgid ""
+"Savollaringiz bormi? Qo'ng'iroq qiling yoki qulay messenjer orqali yozing — "
+"mutaxassislarimiz sizga mos qozonni tanlashda yordam beradi."
+msgstr ""
+"Саволларингиз борми? Қўнғироқ қилинг ёки қулай мессенжер орқали ёзинг — "
+"мутахассисларимиз сизга мос қозонни танлашда ёрдам беради."
+
+#: templates/base.html:79
+msgid "Telefon"
+msgstr "Телефон"
+
+#: templates/base.html:108
+msgid "Barcha huquqlar himoyalangan."
+msgstr "Барча ҳуқуқлар ҳимояланган."
+
+#: templates/base.html:120
+msgid "Yopish"
+msgstr "Ёпиш"
+
+#: templates/base.html:121
+msgid "Bog'lanish usulini tanlang"
+msgstr "Боғланиш усулини танланг"
+
+#: templates/base.html:122
+msgid "Buyurtma berish uchun o'zingizga qulay usulni tanlang."
+msgstr "Буюртма бериш учун ўзингизга қулай усулни танланг."
+
+#: templates/base.html:124
+msgid "Telefon orqali"
+msgstr "Телефон орқали"
+
+#: templates/base.html:127
+msgid "Telegram orqali"
+msgstr "Телеграм орқали"
+
+#: templates/base.html:130
+msgid "WhatsApp orqali"
+msgstr "WҳатсАпп орқали"
+
+#: templates/boiler_detail.html:14
+msgid "Bosh sahifa"
+msgstr "Бош саҳифа"
+
+#: templates/boiler_detail.html:47 templates/index.html:131
+#: templates/partials/boiler_card.html:14
+msgid "Quvvati"
+msgstr "Қуввати"
+
+#: templates/boiler_detail.html:49 templates/index.html:132
+#: templates/partials/boiler_card.html:15
+msgid "Isitish maydoni"
+msgstr "Иситиш майдони"
+
+#: templates/boiler_detail.html:51 templates/index.html:112
+msgid "Yoqilg'i turi"
+msgstr "Ёқилғи тури"
+
+#: templates/boiler_detail.html:55 templates/index.html:133
+msgid "Narxi"
+msgstr "Нархи"
+
+#: templates/boiler_detail.html:58 templates/partials/boiler_card.html:22
+msgid "so'm"
+msgstr "сўм"
+
+#: templates/boiler_detail.html:60 templates/partials/boiler_card.html:24
+msgid "Narxi so'rov bo'yicha"
+msgstr "Нархи сўров бўйича"
+
+#: templates/boiler_detail.html:66
+msgid "Buyurtma berish"
+msgstr "Буюртма бериш"
+
+#: templates/boiler_detail.html:67 templates/index.html:44
+msgid "Qo'ng'iroq qilish"
+msgstr "Қўнғироқ қилиш"
+
+#: templates/boiler_detail.html:75
+msgid "Qo'shimcha ma'lumot"
+msgstr "Қўшимча маълумот"
+
+#: templates/boiler_detail.html:84
+msgid "Texnik xususiyatlari"
+msgstr "Техник хусусиятлари"
+
+#: templates/boiler_detail.html:87
+msgid "Ish bosimi"
+msgstr "Иш босими"
+
+#: templates/boiler_detail.html:88
+msgid "Elektr ta'minoti"
+msgstr "Електр таъминоти"
+
+#: templates/boiler_detail.html:89
+msgid "O'lchami (U × E × B)"
+msgstr "Ўлчами (У × Е × Б)"
+
+#: templates/boiler_detail.html:90
+msgid "Og'irligi"
+msgstr "Оғирлиги"
+
+#: templates/boiler_detail.html:91
+msgid "Yonish kamerasi hajmi"
+msgstr "Ёниш камераси ҳажми"
+
+#: templates/boiler_detail.html:92
+msgid "Bunker hajmi"
+msgstr "Бункер ҳажми"
+
+#: templates/boiler_detail.html:98
+msgid "Ishlash xususiyatlari"
+msgstr "Ишлаш хусусиятлари"
+
+#: templates/boiler_detail.html:101
+msgid "Bir marta yuklashda ishlash vaqti"
+msgstr "Бир марта юклашда ишлаш вақти"
+
+#: templates/boiler_detail.html:102
+#, fuzzy
+#| msgid "Yoqilg'i turi"
+msgid "Yoqilg'i sarfi"
+msgstr "Ёқилғи сарфи"
+
+#: templates/boiler_detail.html:103
+msgid "Boshqaruv tizimi"
+msgstr "Бошқарув тизими"
+
+#: templates/boiler_detail.html:104
+msgid "Xavfsizlik tizimi"
+msgstr "Хавфсизлик тизими"
+
+#: templates/boiler_detail.html:111
+msgid "Avtomatika / Aqilli boshqaruv"
+msgstr "Автоматика / Ақилли бошқарув"
+
+#: templates/boiler_detail.html:120
+msgid "Komplektatsiya"
+msgstr "Комплектатсия"
+
+#: templates/boiler_detail.html:129
+msgid "Video lavha"
+msgstr "Видео лавҳа"
+
+#: templates/index.html:4
+msgid "Isitish qozonlari"
+msgstr "Иситиш қозонлари"
+
+#: templates/index.html:13
+msgid "Isitish tizimlari"
+msgstr "Иситиш тизимлари"
+
+#: templates/index.html:14
+msgid "Qishning sovug'ini uyingizdagi issiqlikka aylantiring"
+msgstr "Қишнинг совуғини уйингиздаги иссиқликка айлантиринг"
+
+#: templates/index.html:15
+msgid ""
+"Ko'mir va gazda ishlaydigan qozonlar — o'z sexlarimizda ishlab chiqariladi, "
+"har biriga rasmiy kafolat."
+msgstr ""
+"Кўмир ва газда ишлайдиган қозонлар — ўз сехларимизда ишлаб чиқарилади, ҳар "
+"бирига расмий кафолат."
+
+#: templates/index.html:17
+msgid "Menga mos qozonni toping"
+msgstr "Менга мос қозонни топинг"
+
+#: templates/index.html:26
+msgid "Ishonchlilik"
+msgstr "Ишончлилик"
+
+#: templates/index.html:27
+msgid "20 yillik tajriba, yuzlab issiq xonadonlar"
+msgstr "20 йиллик тажриба, юзлаб иссиқ хонадонлар"
+
+#: templates/index.html:28
+msgid ""
+"Har bir qozon sexdan sinovdan o'tib chiqadi — barqaror ishlash va uzoq "
+"xizmat muddati kafolatlanadi."
+msgstr ""
+"Ҳар бир қозон сехдан синовдан ўтиб чиқади — барқарор ишлаш ва узоқ хизмат "
+"муддати кафолатланади."
+
+#: templates/index.html:30
+msgid "Modellarni ko'rish"
+msgstr "Моделларни кўриш"
+
+#: templates/index.html:31
+msgid "Bog'lanish"
+msgstr "Боғланиш"
+
+#: templates/index.html:39
+msgid "Do'kon"
+msgstr "Дўкон"
+
+#: templates/index.html:40
+msgid "Do'konimizga keling — tanlashda yordam beramiz"
+msgstr "Дўконимизга келинг — танлашда ёрдам берамиз"
+
+#: templates/index.html:41
+msgid ""
+"Mang'it shahri, A.Navoiy ko'chasi 34-uy. Qozonlarni o'z ko'zingiz bilan "
+"ko'rib, mutaxassis bilan maslahatlashing."
+msgstr ""
+"Манғит шаҳри, А.Навоий кўчаси 34-уй. Қозонларни ўз кўзингиз билан кўриб, "
+"мутахассис билан маслаҳатлашинг."
+
+#: templates/index.html:43
+msgid "Manzilni ko'rish"
+msgstr "Манзилни кўриш"
+
+#: templates/index.html:59
+msgid "yillik tajriba"
+msgstr "йиллик тажриба"
+
+#: templates/index.html:60
+msgid "o'z ishlab chiqarishimiz"
+msgstr "ўз ишлаб чиқаришимиз"
+
+#: templates/index.html:61
+msgid "ko'mir qozon modeli"
+msgstr "кўмир қозон модели"
+
+#: templates/index.html:62
+msgid "gaz qozon modeli"
+msgstr "газ қозон модели"
+
+#: templates/index.html:71
+msgid "Mang'it shahri"
+msgstr "Манғит шаҳри"
+
+#: templates/index.html:73
+msgid ""
+"AmuTeplo - xonadoningiz va biznesingiz uchun sifatli isitish qozonlari "
+"ishlab chiqaruvchi ishonchli hamkoringiz. Bizning qozonlarimiz qishning "
+"qahraton sovuqlarida ham uyingizni issiq va fayzli qilishga kafolat beradi."
+msgstr ""
+"АмуТепло - хонадонингиз ва бизнесингиз учун сифатли иситиш қозонлари ишлаб "
+"чиқарувчи ишончли ҳамкорингиз. Бизнинг қозонларимиз қишнинг қаҳратон "
+"совуқларида ҳам уйингизни иссиқ ва файзли қилишга кафолат беради."
+
+#: templates/index.html:77
+msgid "O'zimiz ishlab chiqaramiz"
+msgstr "Ўзимиз ишлаб чиқарамиз"
+
+#: templates/index.html:78
+msgid ""
+"Barcha qozonlar eng yuqori sifatli materiallardan, zamonaviy texnologiyalar "
+"asosida bevosita o'zimizning sexlarda ishlab chiqariladi."
+msgstr ""
+"Барча қозонлар енг юқори сифатли материаллардан, замонавий технологиялар "
+"асосида бевосита ўзимизнинг сехларда ишлаб чиқарилади."
+
+#: templates/index.html:82
+msgid "20 yillik tajriba"
+msgstr "20 йиллик тажриба"
+
+#: templates/index.html:83
+msgid ""
+"Soqada 20 yildan ortiq chuqur tajribaga egamiz. Yuzlab xonadonlar va "
+"issiqxonalar bizning qozonlarimizdan ishonchli foydalanmoqda."
+msgstr ""
+"Соқада 20 йилдан ортиқ чуқур тажрибага егамиз. Юзлаб хонадонлар ва "
+"иссиқхоналар бизнинг қозонларимиздан ишончли фойдаланмоқда."
+
+#: templates/index.html:87
+msgid "Sifat va Kafolat"
+msgstr "Сифат ва Кафолат"
+
+#: templates/index.html:88
+msgid ""
+"Biz har bir mahsulotimizga to'liq javob beramiz va ularning uzoq yillar "
+"xizmat qilishiga rasmiy kafolat taqdim etamiz."
+msgstr ""
+"Биз ҳар бир маҳсулотимизга тўлиқ жавоб берамиз ва уларнинг узоқ йиллар "
+"хизмат қилишига расмий кафолат тақдим етамиз."
+
+#: templates/index.html:98
+msgid "Menga qaysi qozon mos?"
+msgstr "Менга қайси қозон мос?"
+
+#: templates/index.html:99
+msgid "Maydon va yoqilg'i turini kiriting — tavsiya etilgan modelni ko'rasiz"
+msgstr "Майдон ва ёқилғи турини киритинг — тавсия етилган моделни кўрасиз"
+
+#: templates/index.html:103
+msgid "Tezkor hisoblash"
+msgstr "Тезкор ҳисоблаш"
+
+#: templates/index.html:104
+msgid "2 ta savol — 1 ta javob"
+msgstr "2 та савол — 1 та жавоб"
+
+#: templates/index.html:105
+msgid ""
+"Aniq narx va texnik maslahat uchun menejerimiz qo'ng'iroq qilib to'liq "
+"tushuntirib beradi."
+msgstr ""
+"Аниқ нарх ва техник маслаҳат учун менежеримиз қўнғироқ қилиб тўлиқ "
+"тушунтириб беради."
+
+#: templates/index.html:108
+msgid "Uy maydoni (m²)"
+msgstr "Уй майдони (м²)"
+
+#: templates/index.html:114
+msgid "Ko'mir (qattiq yoqilg'i)"
+msgstr "Кўмир (қаттиқ ёқилғи)"
+
+#: templates/index.html:115
+msgid "Tabiiy gaz"
+msgstr "Табиий газ"
+
+#: templates/index.html:118
+msgid "Mos qozonni topish"
+msgstr "Мос қозонни топиш"
+
+#: templates/index.html:122
+msgid ""
+"Natija shu yerda ko'rinadi — chapdagi formani to'ldirib, «Mos qozonni "
+"topish» tugmasini bosing."
+msgstr ""
+"Натижа шу ерда кўринади — чапдаги формани тўлдириб, «Мос қозонни топиш» "
+"тугмасини босинг."
+
+#: templates/index.html:124
+msgid "Sizga tavsiya etiladi"
+msgstr "Сизга тавсия етилади"
+
+#: templates/index.html:136
+msgid "Batafsil"
+msgstr "Батафсил"
+
+#: templates/index.html:137 templates/partials/boiler_card.html:27
+msgid "Buyurtma"
+msgstr "Буюртма"
+
+#: templates/index.html:139
+msgid ""
+"Bu taxminiy tavsiya. Aniq model va narxni bilish uchun qo'ng'iroq qiling — "
+"mutaxassisimiz uy sharoitingizga qarab tanlab beradi."
+msgstr ""
+"Бу тахминий тавсия. Аниқ модел ва нархни билиш учун қўнғироқ қилинг — "
+"мутахассисимиз уй шароитингизга қараб танлаб беради."
+
+#: templates/index.html:153
+msgid "Mahsulot ustiga bosing — to'liq ma'lumot va video"
+msgstr "Маҳсулот устига босинг — тўлиқ маълумот ва видео"
+
+#: templates/index.html:158
+msgid "Ko'mirda ishlaydigan qozonlar"
+msgstr "Кўмирда ишлайдиган қозонлар"
+
+#: templates/index.html:159 templates/index.html:173
+msgid "ta model"
+msgstr "та модел"
+
+#: templates/index.html:165
+msgid "Hozircha ko'mir qozonlari qo'shilmagan."
+msgstr "Ҳозирча кўмир қозонлари қўшилмаган."
+
+#: templates/index.html:172
+msgid "Gazda ishlaydigan qozonlar"
+msgstr "Газда ишлайдиган қозонлар"
+
+#: templates/index.html:179
+msgid "Hozircha gaz qozonlari qo'shilmagan."
+msgstr "Ҳозирча газ қозонлари қўшилмаган."
+
+#: templates/index.html:190
+msgid "Bizning manzil"
+msgstr "Бизнинг манзил"
+
+#: templates/index.html:191
+msgid "Do'konimizga tashrif buyuring"
+msgstr "Дўконимизга ташриф буюринг"
+
+#: templates/index.html:195
+msgid "Do'kon va sex"
+msgstr "Дўкон ва сех"
+
+#: templates/index.html:201
+msgid ""
+"Eng sifatli isitish qozonlari va jihozlarini bevosita do'konimizga tashrif "
+"buyurib xarid qilishingiz mumkin. Biz sizni kutib qolamiz!"
+msgstr ""
+"Енг сифатли иситиш қозонлари ва жиҳозларини бевосита дўконимизга ташриф "
+"буюриб харид қилишингиз мумкин. Биз сизни кутиб қоламиз!"
+
+#: templates/index.html:203
+msgid "Yo'nalish olish"
+msgstr "Йўналиш олиш"
+
+#: templates/index.html:207
+msgid "Xarita"
+msgstr "Харита"
+
+#: templates/partials/boiler_card.html:13
+msgid "Yoqilg'i"
+msgstr "Ёқилғи"
+
+#: templates/partials/boiler_card.html:16
+msgid "Batafsil ma'lumot"
+msgstr "Батафсил маълумот"
+
+#: teplo/settings.py:167
+msgid "O'zbekcha (Lotin)"
+msgstr "Ўзбекча (Лотин)"
+
+#: teplo/settings.py:168
+msgid "Ўзбекча (Кирилл)"
+msgstr "Ўзбекча (Кирилл)"

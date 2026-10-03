@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#191715">
+    <link rel="icon" href="/media/icon.jpg" type="image/jpeg">
     <title>{% block title %}AMU TEPLO{% endblock %}</title>
     <script>
         // Sahifa yuklanishidan oldin temani qo'llash (miltillamasligi uchun)
@@ -24,8 +25,7 @@
     <header class="site-header">
         <div class="header-inner">
             <a href="{{ home_url }}" class="brand-block">
-                <span class="company-name">AMU KOVKA ART MCHJ</span>
-                <span class="brand-logo"><span class="dot"></span>AMU TEPLO</span>
+                <img src="/media/logo.PNG" alt="AmuTeplo Logo" style="height: 52px; width: auto; object-fit: contain;">
             </a>
 
             <nav class="main-nav" id="main-nav">
@@ -41,7 +41,7 @@
                     {% get_available_languages as LANGUAGES %}
                     {% get_language_info_list for LANGUAGES as languages %}
                     {% for lang in languages %}
-                        <a href="/{{ lang.code }}/" class="{% if lang.code == LANGUAGE_CODE %}active{% endif %}" title="{{ lang.name_local }}">
+                        <a href="#" onclick="changeLanguage('{{ lang.code }}'); return false;" class="{% if lang.code == LANGUAGE_CODE %}active{% endif %}" title="{{ lang.name_local }}">
                             {% if lang.code == 'uz' %}UZ{% elif lang.code == 'uz-cyrl' %}ЎЗ{% else %}{{ lang.code }}{% endif %}
                         </a>
                     {% endfor %}

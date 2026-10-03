@@ -11,8 +11,8 @@
         <div class="card-body">
             <h3>{{ boiler.name }}</h3>
             <div class="model">{% trans "Yoqilg'i" %} / {{ boiler.get_fuel_type_display }}</div>
-            <div class="spec-row"><span>{% trans "Quvvati" %}</span><span>{{ boiler.power|default:"—" }}</span></div>
-            <div class="spec-row"><span>{% trans "Isitish maydoni" %}</span><span>{{ boiler.heating_area|default:"—" }}</span></div>
+            <div class="spec-row"><span>{% trans "Quvvati" %}</span><span>{% if boiler.power %}{{ boiler.power }} kW{% else %}—{% endif %}</span></div>
+            <div class="spec-row"><span>{% trans "Isitish maydoni" %}</span><span>{% if boiler.heating_area %}{{ boiler.heating_area }} m²{% else %}—{% endif %}</span></div>
             <span class="more-link">{% trans "Batafsil ma'lumot" %} &rarr;</span>
         </div>
     </a>
